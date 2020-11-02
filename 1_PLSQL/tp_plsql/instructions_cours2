@@ -1,0 +1,36 @@
+
+--afficher l'utilisateur
+show User;
+--permet de donner les droits à un autre user
+grant execute on finances to e20160010237;
+--permet de donner les droits à tout le monde.
+grant execute on finances to public;
+
+--récupere un packtage d'un autre utilisateur
+select p00000009432.Finances.convertirF_ED(salaire) from Emp;
+
+
+--quelques pckg oracles utiles.
+--dbms.alert
+--dbms.stat
+--dbms.util
+
+
+--user_tables : tables de l'utilisateur
+--user_constraints: contraintes de l'user
+--user_triggers: triggers de l'utilisateur
+--all-tables: toutes les tables
+--dba_users: toutles les tables de la base de données.
+
+
+--permet de voir toutes les informations sur la session.
+desc v$session
+
+select user, osuser, machine from v$session where type = 'USER';
+
+
+--variable dynamique obligatoirement varchar2
+
+--SQL injection: essayer de passer des requetes plus larges que celle qu'on doit faire passer
+
+
