@@ -1,1 +1,0 @@
-desc dbms_metadata
