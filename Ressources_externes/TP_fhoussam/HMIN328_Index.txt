@@ -1,0 +1,142 @@
+select name, lf_rows, lf_blks, br_rows, br_blks, height from index_stats;
+select name, lf_rows, height from index_stats;
+
+
+2.1 Exercices
+SELECT index_name, blevel, table_name FROM user_indexes;
+
+1.Que renvoie la requˆete suivante ? select rowid, rownum, code_insee from commune;
+
+Oracle Database rowid values contain information necessary to locate a row:
+
+    The data object number of the object.
+    The data block in the datafile in which the row resides.
+    The position of the row in the data block (first row is 0)
+    The datafile in which the row resides (first file is 1).
+	
+2. quels sont les index déjà présents sur votre schéma utilisateur ? Expliquez leur présence
+Requ :select index_name from user_indexes;
+indexes crées d'une manière implicite et transparente au moment de la création des clés primaires.
+
+3. Indiquez si ces index sont uniques ? denses ?
+requ :select name, lf_rows from index_stats;
+NAME                              LF_ROWS
+------------------------------ ----------
+PK_COMMUNE                          36318
+
+Requ :select count(*) from COMMUNE;
+  COUNT(*)
+----------
+     36318
+	 
+LF_ROW=nbr_tuple --> Dense
+
+4. Quelle est la hauteur de la taille de l’index de la table COMMUNE ?
+Requ :select name, height from index_stats;
+NAME                               HEIGHT
+------------------------------ ----------
+PK_COMMUNE                              2
+
+5. Quels sont les nombres de blocs de branches et de feuilles, qui ont ´et´e r´eserv´es pour l’index de la table COMMUNE ?
+Requ :select name, br_blks, lf_blks from index_stats;
+NAME                              BR_BLKS    LF_BLKS
+------------------------------ ---------- ----------
+PK_COMMUNE                              1         81
+
+6. Quelle est la taille de chaque tuple (clé, pointeurs, rowid) présent au niveau des blocs des feuilles (on considère que les blocs sont pleins) ?
+Requ: select name, lf_rows, LF_ROWS_LEN from index_stats;
+NAME                              LF_ROWS                             LF_ROWS_LEN
+------------------------------ ---------- ---------------------------------------
+PK_COMMUNE                          36318                                  581088
+
+Taille=(5810088/36318)=16
+
+7. Par comparaison, quelle est la taille moyenne de chaque tuple de la table COMMUNE et combien
+de tuples peuvent ˆetre stock´es dans un bloc (tenir compte de l’espace libre et donc de la valeur
+de PCT FREE de la vue USER TABLES) ?
+
+Requ : select num_rows, avg_row_len, blocks, empty_blocks, pct_free from user_tables where table_name='COMMUNE'
+  NUM_ROWS                             AVG_ROW_LEN     BLOCKS                            EMPTY_BLOCKS   PCT_FREE
+---------- --------------------------------------- ---------- --------------------------------------- ----------
+     36318                                     402       2134                                       0         10
+
+On récupère la taille d'un bloc de données :
+Requ :select name, value from v$parameter where name='db_block_size';
+NAME						VALUE
+------------------------------------
+db_block_size               8192    
+
+Avec 10% de la taille qui doit rester vide (PCT_FREE=10%), la taille du bloc sera : 7372,8 octets
+ 
+Donc chaque bloc peut stocker : 7372.8/402 = 18 tuples.
+
+8. Calculer le nombre de blocs théorique nécessaire au stockage de l’ensemble des tuples de la table 
+et comparez ce nombre avec la valeur de l’attribut BLOCKS de USER TABLES. Le nombre
+calculé vous semble-t’il réaliste ?
+
+-Nombre de blocs théorique = (36318*402)/7372.8 = 1980 blocs
+
+Requ :select blocks from user_tables where table_name='COMMUNE';
+    BLOCKS
+----------
+      2134
+	  
+C'est normal la différence, il y a des blocs réservés mais qui sont encore vide.
+Requ : select empty_blocks from user_tables where table_name='COMMUNE';
+
+                           EMPTY_BLOCKS
+---------------------------------------
+                                     42
+	  
+9. Dans quel espace de tables est organisé logiquement l’index COMMUNE PK ?
+
+Requ :select index_name, tablespace_name from user_indexes where index_name='PK_COMMUNE';
+INDEX_NAME                     TABLESPACE_NAME              
+------------------------------ ------------------------------
+PK_COMMUNE                     USERS 
+
+10. Quel est l’espace de stockage (en Moctets) n´ecessaire pour la table COMMUNE ? Quel espace
+de stockage supplémentaire faut’il rajouter pour stocker l’index COMMUNE PK ?
+
+Taille =(Nbt_tuple*taille_moyenne_tuple)+(Nbr_entree_index*taille_tuple[clé, pointeurs, rowid])=((36318*402)+(36318*16))/(1024*1024)=14.47Mo
+
+***************************************
+3. Manipulation du paquetage DBMS ROWID
+***************************************
+
+create or replace Procedure SameDataBlock( v_codeinsee IN varchar2 )
+
+AS
+
+   CURSOR c1
+   IS
+      SELECT DBMS_ROWID.ROWID_BLOCK_NUMBER(b.rowid) as numBloc, DBMS_ROWID.ROWID_OBJECT(b.rowid) as numTable, 
+      DBMS_ROWID.ROWID_ROW_NUMBER(b.rowid) as numTuple, a.NOM_COM as nomCommune, b.CODEINSEE as codeINSEE from COMMUNE a, COMMUNE b
+      WHERE a.CODEINSEE=v_codeinsee
+      and DBMS_ROWID.ROWID_BLOCK_NUMBER(b.rowid)=DBMS_ROWID.ROWID_BLOCK_NUMBER(a.rowid);
+
+BEGIN
+     
+   FOR cursor_index in c1
+   LOOP
+     DBMS_OUTPUT.PUT_LINE('NUMBLOC: '||cursor_index.numBloc||' NUMTABLE: '||cursor_index.numTable||' NUMTUPLE: '||cursor_index.numTuple
+     ||' COMMUNE: '||cursor_index.nomCommune||' CODEINSEE: '||cursor_index.codeINSEE);
+   END LOOP;
+
+END;
+
+
+
+
+
+
+
+
+
+
+
+5. select nom Com from commune where code insee like ’34%’ ; oui
+   select nom Com from commune where code insee like ’%34’ ; non (just préfixe)
+
+
+select dbms_rowid.rowid_block_number(rowid) as numbloc, dbms_rowid.rowid_object(rowid) as numtable, nom_com from commune where codeinsee='34235'

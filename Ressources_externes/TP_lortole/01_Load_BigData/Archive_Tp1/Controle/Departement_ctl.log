@@ -1,0 +1,56 @@
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Fri Oct 21 15:45:56 2016
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Departement_ctl.txt
+Character Set UTF8 specified for all input.
+
+Data File:      ../Donnees/Departement.csv
+  Bad File:     Departement.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table DEPARTEMENT, loaded from every logical record.
+Insert option in effect for this table: APPEND
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+REG                                 FIRST     *  WHT      CHARACTER            
+    SQL string for column : "to_char(:reg)"
+DEP                                  NEXT     *  WHT      CHARACTER            
+    SQL string for column : "to_char(:dep)"
+CHEF_LIEU                            NEXT     *  WHT      CHARACTER            
+    SQL string for column : "to_char(:chef_lieu)"
+NOM_DEP                              NEXT     *  WHT      CHARACTER            
+    SQL string for column : "to_char(:nom_dep)"
+
+
+Table DEPARTEMENT:
+  101 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  66048 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:           101
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri Oct 21 15:45:56 2016
+Run ended on Fri Oct 21 15:45:57 2016
+
+Elapsed time was:     00:00:00.26
+CPU time was:         00:00:00.05

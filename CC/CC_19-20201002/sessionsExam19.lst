@@ -1,0 +1,56 @@
+SQL> select username, TO_CHAR(logon_time, 'MONTH DD, YYYY, HH24:MI:SS'), machine, osuser from v$session where type='USER' and (machine like 'k%' or machine like 'w%') order by machine;
+
+USERNAME     TO_CHAR(LOGON_TIME,'MONTHDD, MACH OSUSER                                                                                                                               
+------------ ---------------------------- ---- --------------------------------------------------                                                                                   
+E20150004937 NOVEMBRE  22, 2019, 14:30:15 k11  josselin.alezot@etu.umontpellier.fr                                                                                                  
+E20150004937 NOVEMBRE  22, 2019, 13:33:40 k11  josselin.alezot@etu.umontpellier.fr                                                                                                  
+E20150005071 NOVEMBRE  22, 2019, 13:32:48 k12  gaetan.tronel@etu.umontpellier.fr                                                                                                    
+E20170013255 NOVEMBRE  22, 2019, 14:30:04 k13  fatoumata-f-.traore@etu.umontpellier.fr                                                                                              
+E20150001929 NOVEMBRE  22, 2019, 14:27:22 k15  baptiste.darnala@etu.umontpellier.fr                                                                                                 
+E20140033330 NOVEMBRE  22, 2019, 14:27:07 k17  eliott.duverger@etu.umontpellier.fr                                                                                                  
+E20180008918 NOVEMBRE  22, 2019, 13:28:26 k3   darlene.bechtel@etu.umontpellier.fr                                                                                                  
+E20180012679 NOVEMBRE  22, 2019, 13:31:30 k4   julien.morgan-de-rivery@etu.umontpellier.fr                                                                                          
+E20180006689 NOVEMBRE  22, 2019, 13:40:12 k6   sullyvan.tremor@etu.umontpellier.fr                                                                                                  
+E20150008609 NOVEMBRE  22, 2019, 13:39:46 k7   zah.zoro-bi@etu.umontpellier.fr                                                                                                      
+E20180009592 NOVEMBRE  22, 2019, 13:30:03 k9   mohammed.ouail@etu.umontpellier.fr                                                                                                   
+E20180009592 NOVEMBRE  22, 2019, 13:49:33 k9   mohammed.ouail@etu.umontpellier.fr                                                                                                   
+ISA          NOVEMBRE  22, 2019, 13:31:24 w1   isabelle.mougenot@umontpellier.fr                                                                                                    
+P00000009432 NOVEMBRE  22, 2019, 13:31:47 w1   isabelle.mougenot@umontpellier.fr                                                                                                    
+E20180009448 NOVEMBRE  22, 2019, 14:02:32 w10  ahmed.hajjaj@etu.umontpellier.fr                                                                                                     
+E20180009448 NOVEMBRE  22, 2019, 13:29:16 w10  ahmed.hajjaj@etu.umontpellier.fr                                                                                                     
+E20190010989 NOVEMBRE  22, 2019, 14:33:44 w11  abdelmajid.el-farkouki@etu.umontpellier.fr                                                                                           
+E20190010989 NOVEMBRE  22, 2019, 13:17:07 w11  abdelmajid.el-farkouki@etu.umontpellier.fr                                                                                           
+E20190010989 NOVEMBRE  22, 2019, 13:34:44 w11  abdelmajid.el-farkouki@etu.umontpellier.fr                                                                                           
+E20140042469 NOVEMBRE  22, 2019, 14:29:29 w13  jean-philippe.vert@etu.umontpellier.fr                                                                                               
+E20140042469 NOVEMBRE  22, 2019, 14:27:43 w13  jean-philippe.vert@etu.umontpellier.fr                                                                                               
+E20190009899 NOVEMBRE  22, 2019, 14:07:41 w14  gustave.coste@etu.umontpellier.fr                                                                                                    
+E20180005273 NOVEMBRE  22, 2019, 13:14:51 w15  aram.tiraturyan@etu.umontpellier.fr                                                                                                  
+E20180005273 NOVEMBRE  22, 2019, 13:18:37 w15  aram.tiraturyan@etu.umontpellier.fr                                                                                                  
+E20180010750 NOVEMBRE  22, 2019, 14:16:39 w16  radia.messadi@etu.umontpellier.fr                                                                                                    
+E20180010750 NOVEMBRE  22, 2019, 13:21:19 w16  radia.messadi@etu.umontpellier.fr                                                                                                    
+E20160010790 NOVEMBRE  22, 2019, 13:38:16 w17  hicham.tabet@etu.umontpellier.fr                                                                                                     
+E20160010790 NOVEMBRE  22, 2019, 14:31:46 w17  hicham.tabet@etu.umontpellier.fr                                                                                                     
+E20180008976 NOVEMBRE  22, 2019, 13:36:32 w18  kahina.menzou@etu.umontpellier.fr                                                                                                    
+E20180011784 NOVEMBRE  22, 2019, 13:28:58 w19  hichem.koched@etu.umontpellier.fr                                                                                                    
+E20140028501 NOVEMBRE  22, 2019, 14:24:30 w20  thomas.lemaitre@etu.umontpellier.fr                                                                                                  
+E20150007928 NOVEMBRE  22, 2019, 14:26:19 w21  olivier.montet@etu.umontpellier.fr                                                                                                   
+NIDAL        NOVEMBRE  22, 2019, 13:27:02 w23  nidal.bekkali@etu.umontpellier.fr                                                                                                    
+E20170007421 NOVEMBRE  22, 2019, 14:13:46 w24  bocar.guisse@etu.umontpellier.fr                                                                                                     
+E20170013112 NOVEMBRE  22, 2019, 13:26:55 w25  mohamed.salifou-djitao@etu.umontpellier.fr                                                                                           
+E20160008480 NOVEMBRE  22, 2019, 14:32:59 w3   mohamed-adel.terki@etu.umontpellier.fr                                                                                               
+E20160008480 NOVEMBRE  22, 2019, 14:32:57 w3   mohamed-adel.terki@etu.umontpellier.fr                                                                                               
+E20180010339 NOVEMBRE  22, 2019, 13:28:02 w30  fetima.toumi@etu.umontpellier.fr                                                                                                     
+E20170014759 NOVEMBRE  22, 2019, 13:40:00 w34  nassim.saada@etu.umontpellier.fr                                                                                                     
+E20170014759 NOVEMBRE  22, 2019, 14:13:23 w34  nassim.saada@etu.umontpellier.fr                                                                                                     
+E20180006180 NOVEMBRE  22, 2019, 13:31:08 w35  malika.djebrouni@etu.umontpellier.fr                                                                                                 
+NABIL        NOVEMBRE  22, 2019, 14:27:51 w36  nabil.amari@etu.umontpellier.fr                                                                                                      
+E20160009676 NOVEMBRE  22, 2019, 13:32:36 w36  nabil.amari@etu.umontpellier.fr                                                                                                      
+E20160011921 NOVEMBRE  22, 2019, 13:39:56 w37  tassadit.ben-ahmed@etu.umontpellier.fr                                                                                               
+E20180010615 NOVEMBRE  22, 2019, 13:29:58 w6   leonardo.moros@etu.umontpellier.fr                                                                                                   
+E20140023212 NOVEMBRE  22, 2019, 13:25:59 w8   aurelie.murcia@etu.umontpellier.fr                                                                                                   
+E20180008782 NOVEMBRE  22, 2019, 13:54:11 w9   elisabeth.zettor@etu.umontpellier.fr                                                                                                 
+E20180008782 NOVEMBRE  22, 2019, 13:30:33 w9   elisabeth.zettor@etu.umontpellier.fr                                                                                                 
+
+48 lignes selectionnees.
+
+SQL> spool off

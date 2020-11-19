@@ -1,0 +1,13 @@
+rlwrap sqlplus login/PASS@venus/master
+
+@00_Delete_BD_Communes.sql
+@01_Create_BD_Communes.sql
+@02_Query_BD_Communes.sql
+@03_Update_BD_Communes.sql
+@05_Trigger_BD_Communes.sql
+
+sqlldr userid=login/PASS@venus/master control=Region_ctl.txt
+sqlldr userid=login/PASS@venus/master control=Departement_ctl.txt
+sqlldr userid=login/PASS@venus/master control=Commune_ctl.txt
+
+show errors ;

@@ -1,0 +1,93 @@
+
+SQL*Loader: Release 11.2.0.1.0 - Production on Fri Oct 21 15:46:07 2016
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   Commune_ctl.txt
+Data File:      ../Donnees/pop_fr_geoloc_1975_2010.csv
+  Bad File:     pop_fr_geoloc_1975_2010.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table COMMUNE, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+REG                                 FIRST     *   ,       CHARACTER            
+    SQL string for column : "to_char(:reg)"
+DEP                                  NEXT     *   ,       CHARACTER            
+    SQL string for column : "to_char(:dep)"
+COM                                  NEXT     *   ,       CHARACTER            
+    SQL string for column : "to_char(:com)"
+ARTICLE                              NEXT     *   ,       CHARACTER            
+NOM_COM                              NEXT     *   ,       CHARACTER            
+LONGITUDE                            NEXT     *   ,       CHARACTER            
+LATITUDE                             NEXT     *   ,       CHARACTER            
+POP_1975                             NEXT     *   ,       CHARACTER            
+POP_1976                             NEXT     *   ,       CHARACTER            
+POP_1977                             NEXT     *   ,       CHARACTER            
+POP_1978                             NEXT     *   ,       CHARACTER            
+POP_1979                             NEXT     *   ,       CHARACTER            
+POP_1980                             NEXT     *   ,       CHARACTER            
+POP_1981                             NEXT     *   ,       CHARACTER            
+POP_1982                             NEXT     *   ,       CHARACTER            
+POP_1983                             NEXT     *   ,       CHARACTER            
+POP_1984                             NEXT     *   ,       CHARACTER            
+POP_1985                             NEXT     *   ,       CHARACTER            
+POP_1986                             NEXT     *   ,       CHARACTER            
+POP_1987                             NEXT     *   ,       CHARACTER            
+POP_1988                             NEXT     *   ,       CHARACTER            
+POP_1989                             NEXT     *   ,       CHARACTER            
+POP_1990                             NEXT     *   ,       CHARACTER            
+POP_1991                             NEXT     *   ,       CHARACTER            
+POP_1992                             NEXT     *   ,       CHARACTER            
+POP_1993                             NEXT     *   ,       CHARACTER            
+POP_1994                             NEXT     *   ,       CHARACTER            
+POP_1995                             NEXT     *   ,       CHARACTER            
+POP_1996                             NEXT     *   ,       CHARACTER            
+POP_1997                             NEXT     *   ,       CHARACTER            
+POP_1998                             NEXT     *   ,       CHARACTER            
+POP_1999                             NEXT     *   ,       CHARACTER            
+POP_2000                             NEXT     *   ,       CHARACTER            
+POP_2001                             NEXT     *   ,       CHARACTER            
+POP_2002                             NEXT     *   ,       CHARACTER            
+POP_2003                             NEXT     *   ,       CHARACTER            
+POP_2004                             NEXT     *   ,       CHARACTER            
+POP_2005                             NEXT     *   ,       CHARACTER            
+POP_2006                             NEXT     *   ,       CHARACTER            
+POP_2007                             NEXT     *   ,       CHARACTER            
+POP_2008                             NEXT     *   ,       CHARACTER            
+POP_2009                             NEXT     *   ,       CHARACTER            
+POP_2010                             NEXT     *   ,       CHARACTER            
+
+value used for ROWS parameter changed from 64 to 23
+
+Table COMMUNE:
+  36318 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 255162 bytes(23 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:         36318
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri Oct 21 15:46:07 2016
+Run ended on Fri Oct 21 15:46:26 2016
+
+Elapsed time was:     00:00:19.58
+CPU time was:         00:00:01.41
